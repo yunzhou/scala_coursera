@@ -40,5 +40,14 @@ object Main {
   /**
     * Exercise 3
     */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    def cc(money: Int, coins: List[Int], coinKind: Int): Int = {
+      if (money == 0) 1
+      else if (money < 0 || coinKind == coins.length) 0
+      else
+        cc(money-coins(coinKind), coins, coinKind) +
+          cc(money, coins, coinKind+1)
+    }
+    cc(money, coins, 0)
+  }
 }
